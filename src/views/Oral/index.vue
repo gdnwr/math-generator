@@ -61,7 +61,7 @@ export default {
       const params = this.$refs.oralParams.getParams();
       console.log('打印参数：', params);
 
-      const oralList = oralGeneratorBatch({ batchNum: 300 });
+      const oralList = oralGeneratorBatch({ batchNum: 3030 });
       this.oralList = oralList.map(item => ({ display: `${item.equations.join(' ')} =` }));
 
       console.log(this.oralList);
