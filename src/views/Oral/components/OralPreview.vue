@@ -21,7 +21,7 @@
               :key="index"
               class="page-content-item"
             >
-              {{ item.display }}
+              <span>{{ item.display }}</span>
             </div>
           </template>
         </div>
@@ -99,13 +99,13 @@ export default {
     }
 
     .page-content {
-      height: calc(100% - 160px);
+      height: calc(100% - 50px);
       display: grid;
       grid-template-columns: 33.33% 33.33% 33.33%;
+      grid-gap: 50px;
 
       .page-content-item {
         font-size: 20px;
-        text-align: left;
         white-space: pre-wrap;
       }
     }
