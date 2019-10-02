@@ -99,7 +99,7 @@ export default {
     }
 
     .page-content {
-      height: calc(100% - 50px);
+      height: calc(100% - 160px);
       display: grid;
       grid-template-columns: 33.33% 33.33% 33.33%;
       grid-gap: 50px;
