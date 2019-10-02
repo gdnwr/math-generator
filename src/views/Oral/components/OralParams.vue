@@ -18,6 +18,17 @@
             </el-checkbox>
           </el-checkbox-group>
         </el-form-item>
+
+        <el-form-item label="答题方式:">
+          <el-checkbox-group v-model="formModel.displayType">
+            <el-checkbox :label="1">
+              标准题
+            </el-checkbox>
+            <el-checkbox :label="2">
+              填空题
+            </el-checkbox>
+          </el-checkbox-group>
+        </el-form-item>
         <el-form-item label="算数范围:">
           <el-input-number
             v-model="formModel.paramMin"
@@ -74,13 +85,14 @@ export default {
   data() {
     return {
       formModel: {
-        operList: ['+', '-'], // 可先运算符
-        paramMin: 1, // 参与运算的数的最小值
-        paramMax: 99, // 参与运算的数的最大值
+        operList: ['+', '-'], // 可选运算符
+        paramMin: 0, // 参与运算的数的最小值
+        paramMax: 100, // 参与运算的数的最大值
         resultMin: 0, // 计算结果的最小值
         resultMax: 100, // 计算结果的最大值
         operNum: 3, // 运算位数
         batchNum: 300, // 生成题目数量
+        displayType: [1], // 题目呈现方式。1|标准题型，2|填空题型
       },
     };
   },

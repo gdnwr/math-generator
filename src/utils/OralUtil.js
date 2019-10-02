@@ -39,11 +39,39 @@ export const oralTwoOral = ({
   };
 };
 
+// 获取算式显示方式。如：15+25-10=
+export const getEquationDisplay = ({ equations }) => {
+  const display = `${equations.join(' ')} =`;
+  return display;
+};
+
+// 获取填空题显示方式。如：15+()-10=30
+export const getGapFillingDisplay = ({ operNum, equations, finalResult }) => {
+  const gapEqus = [...equations, '=', finalResult];
+  const gapIdx = _.random(0, operNum - 1) * 2;
+  gapEqus[gapIdx] = '()';
+
+  const display = gapEqus.join(' ');
+  return display;
+};
+
+// 获取题目显示方式
+export const getDisplay = ({
+  operNum, displayType, equations, finalResult,
+}) => {
+  const type = _.sample(displayType);
+  if (String(type) === '2') {
+    return getGapFillingDisplay({ operNum, equations, finalResult });
+  }
+  return getEquationDisplay({ equations });
+};
+
 // 生成多位数的口算题。如：15+25-10、50-35+15
 export const oralGenerator = ({
   paramMin = 0, paramMax = 100,
   operNum = 3, operList = ['+', '-'],
   resultMin = 0, resultMax = 100,
+  displayType = [1],
 } = {}) => {
   let p1 = randomSpecial(paramMin, paramMax);
 
@@ -58,7 +86,11 @@ export const oralGenerator = ({
     finalResult = result;
   }
 
-  return { equations, finalResult };
+  const display = getDisplay({
+    operNum, displayType, equations, finalResult,
+  });
+
+  return { equations, finalResult, display };
 };
 
 // 批量生成口算题
@@ -66,7 +98,7 @@ export const oralGeneratorBatch = ({
   paramMin = 0, paramMax = 100,
   operNum = 3, operList = ['+', '-'],
   resultMin = 0, resultMax = 100,
-  batchNum = 100,
+  batchNum = 100, displayType = [1],
 } = {}) => {
   const resultList = [];
   for (let i = 0; i < batchNum; i += 1) {
@@ -77,6 +109,7 @@ export const oralGeneratorBatch = ({
       operList,
       resultMin,
       resultMax,
+      displayType,
     });
     resultList.push(resultObj);
   }

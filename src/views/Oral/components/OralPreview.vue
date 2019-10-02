@@ -56,7 +56,7 @@ export default {
   methods: {
     oralGenerator(params) {
       const oralList = oralGeneratorBatch(params);
-      this.oralList = oralList.map(item => ({ display: `${item.equations.join(' ')} =` }));
+      this.oralList = oralList.map(item => ({ display: item.display.replace('()', '(    )') }));
     },
     handlePrint() {
       window.print();
@@ -99,13 +99,14 @@ export default {
     }
 
     .page-content {
+      height: calc(100% - 160px);
       display: grid;
       grid-template-columns: 33.33% 33.33% 33.33%;
 
       .page-content-item {
         font-size: 20px;
-        padding: 10px 10px 50px 10px;
         text-align: left;
+        white-space: pre-wrap;
       }
     }
   }
