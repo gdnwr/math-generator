@@ -102,11 +102,12 @@ export default {
       height: calc(100% - 160px);
       display: grid;
       grid-template-columns: 33.33% 33.33% 33.33%;
-      grid-gap: 50px;
+      // grid-gap: 50px;
 
       .page-content-item {
         font-size: 20px;
         white-space: pre-wrap;
+        margin-right: 50px;
       }
     }
   }
