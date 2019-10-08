@@ -16,7 +16,7 @@
           得分:________
         </div>
         <div class="page-content">
-          <template v-for="(item,index) in oralList.slice((pageIndex - 1) * pageSize,pageIndex * pageSize)">
+          <template v-for="(item,index) in getOnePageData(pageIndex)">
             <div
               :key="index"
               class="page-content-item"
@@ -48,11 +48,17 @@ export default {
     },
   },
   methods: {
+    // 获取一页的数据
+    getOnePageData(pageIndex) {
+      return this.oralList.slice((pageIndex - 1) * this.pageSize, pageIndex * this.pageSize);
+    },
+    // 生成题目
     oralGenerator(params) {
       this.pageSize = params.pageSize;
       const oralList = oralGeneratorBatch(params);
       this.oralList = oralList.map(item => ({ display: item.display.replace('_', '____') }));
     },
+    // 打印
     handlePrint() {
       window.print();
     },
