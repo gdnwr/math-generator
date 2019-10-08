@@ -29,6 +29,21 @@
             </el-checkbox>
           </el-checkbox-group>
         </el-form-item>
+
+        <el-form-item label="有无括号">
+          <el-radio-group v-model="formModel.bracketType">
+            <el-radio :label="0">
+              无括号
+            </el-radio>
+            <el-radio :label="1">
+              有括号
+            </el-radio>
+            <el-radio :label="2">
+              随机
+            </el-radio>
+          </el-radio-group>
+        </el-form-item>
+
         <el-form-item label="算数范围:">
           <el-input-number
             v-model="formModel.paramMin"
@@ -42,6 +57,7 @@
             label="最大值"
           />
         </el-form-item>
+
         <el-form-item label="结果范围:">
           <el-input-number
             v-model="formModel.resultMin"
@@ -55,6 +71,7 @@
             label="最大值"
           />
         </el-form-item>
+
         <el-form-item label="运算位数:">
           <el-input-number
             v-model="formModel.operNum"
@@ -64,6 +81,7 @@
             label="运算位数"
           />
         </el-form-item>
+
         <el-form-item label="题目数量:">
           <el-input-number
             v-model="formModel.batchNum"
@@ -93,6 +111,7 @@ export default {
         operNum: 3, // 运算位数
         batchNum: 300, // 生成题目数量
         displayType: [1], // 题目呈现方式。1|标准题型，2|填空题型
+        bracketType: 0, // 有无括号。0|无、1|有、2|随机
       },
     };
   },

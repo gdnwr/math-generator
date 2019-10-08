@@ -56,7 +56,7 @@ export default {
   methods: {
     oralGenerator(params) {
       const oralList = oralGeneratorBatch(params);
-      this.oralList = oralList.map(item => ({ display: item.display.replace('()', '(    )') }));
+      this.oralList = oralList.map(item => ({ display: item.display.replace('_', '____') }));
     },
     handlePrint() {
       window.print();
