@@ -8,7 +8,7 @@
         style="page-break-before: always"
       >
         <div class="page-title">
-          口算题卡
+          口算题卡（{{ num2hanzi(pageIndex) }}）
         </div>
         <div class="page-subtitle">
           姓名:________________&nbsp;&nbsp;&nbsp;&nbsp;
@@ -21,7 +21,14 @@
               :key="index"
               class="page-content-item"
             >
-              <span>{{ item.display }}</span>
+              <span class="item-cell">
+                <!-- <span class="item-index">{{ circleNumber(index + 1) }}</span> -->
+                <CircleNumber
+                  class="item-index"
+                  :num="index + 1"
+                />
+                <span>{{ item.display }}</span>
+              </span>
             </div>
           </template>
         </div>
@@ -32,9 +39,14 @@
 
 <script>
 import { oralGeneratorBatch } from '../../../utils/OralUtil';
+import { num2hanzi } from '../../../utils/NumberUtil';
+import CircleNumber from '../../../components/CircleNumber.vue';
 
 export default {
   name: 'OralPreview',
+  components: {
+    CircleNumber,
+  },
   data() {
     return {
       // 生成的口算题列表
@@ -61,6 +73,9 @@ export default {
     // 打印
     handlePrint() {
       window.print();
+    },
+    num2hanzi(num) {
+      return num2hanzi(num);
     },
   },
 };
@@ -109,6 +124,15 @@ export default {
         font-size: 20px;
         white-space: pre-wrap;
         margin-right: 50px;
+
+        .item-cell {
+          display: flex;
+          align-items: center;
+        }
+
+        .item-index {
+          margin-right: 10px;
+        }
       }
     }
   }
