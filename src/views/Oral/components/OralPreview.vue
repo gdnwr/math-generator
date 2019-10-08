@@ -16,7 +16,7 @@
           得分:________
         </div>
         <div class="page-content">
-          <template v-for="(item,index) in oralList.slice((pageIndex - 1) * 30,pageIndex * 30)">
+          <template v-for="(item,index) in oralList.slice((pageIndex - 1) * pageSize,pageIndex * pageSize)">
             <div
               :key="index"
               class="page-content-item"
@@ -35,17 +35,11 @@ import { oralGeneratorBatch } from '../../../utils/OralUtil';
 
 export default {
   name: 'OralPreview',
-  props: {
-    // 生成口算是的参数
-    pageSize: {
-      type: Number,
-      default: 30,
-    },
-  },
   data() {
     return {
       // 生成的口算题列表
       oralList: [],
+      pageSize: 30, // 每页题目数量
     };
   },
   computed: {
@@ -55,6 +49,7 @@ export default {
   },
   methods: {
     oralGenerator(params) {
+      this.pageSize = params.pageSize;
       const oralList = oralGeneratorBatch(params);
       this.oralList = oralList.map(item => ({ display: item.display.replace('_', '____') }));
     },

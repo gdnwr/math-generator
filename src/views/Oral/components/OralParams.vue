@@ -50,7 +50,7 @@
             size="mini"
             label="最小值"
           />
-          &nbsp;-&nbsp;
+          <div class="scope-joint-mark" />
           <el-input-number
             v-model="formModel.paramMax"
             size="mini"
@@ -64,7 +64,7 @@
             size="mini"
             label="最小值"
           />
-          &nbsp;-&nbsp;
+          <div class="scope-joint-mark" />
           <el-input-number
             v-model="formModel.resultMax"
             size="mini"
@@ -83,13 +83,22 @@
         </el-form-item>
 
         <el-form-item label="题目数量:">
-          <el-input-number
-            v-model="formModel.batchNum"
-            :min="1"
-            size="mini"
-            label="题目数量"
-          />
-          <span class="param-remark">注：每页30道题</span>
+          <span>
+            <span class="param-sub-label">总页数：</span>
+            <el-input-number
+              v-model="formModel.pageCount"
+              :min="1"
+              size="mini"
+              label="总页数"
+            />
+            <span class="param-sub-label label-page-size">每页题目数：</span>
+            <el-input-number
+              v-model="formModel.pageSize"
+              :min="1"
+              size="mini"
+              label="每页条数"
+            />
+          </span>
         </el-form-item>
       </el-form>
     </div>
@@ -110,6 +119,8 @@ export default {
         resultMax: 100, // 计算结果的最大值
         operNum: 3, // 运算位数
         batchNum: 300, // 生成题目数量
+        pageCount: 10, // 总页数
+        pageSize: 30, // 每页题目数量
         displayType: [1], // 题目呈现方式。1|标准题型，2|填空题型
         bracketType: 0, // 有无括号。0|无、1|有、2|随机
       },
@@ -138,10 +149,21 @@ export default {
       width: 100%;
       margin-left: 20px;
 
-      .param-remark {
-        margin-left: 50px;
+      .scope-joint-mark {
+        display: inline-block;
+        width: 20px;
+        height: 2px;
+        background-color: #606266;
+        padding: 4px 10px;
+        background-clip: content-box;
+      }
+
+      .param-sub-label {
         font-size: 12px;
-        color: #7f8c8d;
+        color: #606266;;
+      }
+      .label-page-size {
+        padding-left: 10px;
       }
     }
     .param-declare {

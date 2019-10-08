@@ -40,6 +40,7 @@ export default {
   methods: {
     handleOralGenerator() {
       const params = this.$refs.oralParams.getParams();
+      params.batchNum = parseInt(params.pageCount * params.pageSize, 10);
       console.log('题目参数：', params);
       this.$refs.oralPreview.oralGenerator(params);
     },
