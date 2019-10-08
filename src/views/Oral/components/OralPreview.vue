@@ -11,8 +11,8 @@
           口算题卡
         </div>
         <div class="page-subtitle">
-          姓名:________&nbsp;&nbsp;&nbsp;&nbsp;
-          日期:____年__月__日&nbsp;&nbsp;星期:____&nbsp;&nbsp;&nbsp;&nbsp;
+          姓名:________________&nbsp;&nbsp;&nbsp;&nbsp;
+          日期:________年____月____日&nbsp;&nbsp;星期:____&nbsp;&nbsp;&nbsp;&nbsp;
           得分:________
         </div>
         <div class="page-content">
