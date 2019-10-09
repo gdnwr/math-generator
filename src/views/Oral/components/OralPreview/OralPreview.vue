@@ -82,7 +82,7 @@ export default {
       this.pageSize = params.pageSize;
       const oralList = oralGeneratorBatch(params);
       this.oralList = oralList.map(item => ({
-        display: item.display.replace('_', '____'),
+        display: item.display.replace('_', '__'),
         answer: item.answer,
       }));
     },
@@ -139,7 +139,7 @@ export default {
       .page-content-item {
         font-size: 20px;
         white-space: pre-wrap;
-        margin-right: 50px;
+        margin-right: 30px;
 
         .item-cell {
           display: flex;

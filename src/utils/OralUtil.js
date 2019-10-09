@@ -109,7 +109,7 @@ export const oralGenerator = ({
 
   for (let i = 1; i < operNum; i += 1) {
     // p1、p2的顺序
-    let pOrder = _.sample([1, 2]);
+    let pOrder = 1;
     if (lastIsBracket) {
       pOrder = 2;
     }
