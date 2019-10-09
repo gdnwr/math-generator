@@ -54,9 +54,10 @@ export const oralTwoOral = ({
 };
 
 // 获取算式显示方式。如：15+25-10=
-export const getEquationDisplay = ({ equations }) => {
+export const getEquationDisplay = ({ equations, finalResult }) => {
   const display = `${equations.join(' ')} =`;
-  return display;
+  const answer = finalResult;
+  return { display, answer };
 };
 
 // 获取填空题显示方式。如：15+_-10=30
@@ -71,10 +72,12 @@ export const getGapFillingDisplay = ({ equations, finalResult }) => {
   const gapIdx = _.sample(numIdexs);
 
   const gapEqus = [...equations, '=', finalResult];
+  const answer = gapEqus[gapIdx];
   gapEqus[gapIdx] = '_';
 
   const display = gapEqus.join(' ');
-  return display;
+
+  return { display, answer };
 };
 
 // 获取题目显示方式
@@ -85,7 +88,7 @@ export const getDisplay = ({
   if (String(type) === '2') {
     return getGapFillingDisplay({ operNum, equations, finalResult });
   }
-  return getEquationDisplay({ equations });
+  return getEquationDisplay({ equations, finalResult });
 };
 
 // 生成多位数的口算题。如：15+25-10、50-35+15
@@ -142,39 +145,16 @@ export const oralGenerator = ({
     }
     p1 = result;
     finalResult = result;
-
-    /* if (isBracket) { // 有括号
-      const {
-        p2, oper, result, pOrder: paramOrder,
-      } = oralTwoOral({
-        p1, operList, resultMin, resultMax, pOrder,
-      });
-
-      if (paramOrder === 1) { // 顺序为:p1-p2
-        equations.push(oper, p2);
-      } else if (paramOrder === 2) { // 顺序为:p2-p1
-        equations = [p2, oper, ...equations];
-      }
-      // 增加左右括号
-      equations = ['(', ...equations, ')'];
-      p1 = result;
-      finalResult = result;
-    } else { // 无括号
-      const { p2, oper, result } = oralTwoOral({
-        p1, operList, resultMin, resultMax,
-      });
-      equations.push(oper, p2);
-      p1 = result;
-      finalResult = result;
-    } */
   }
 
   // 保存显示方式
-  const display = getDisplay({
+  const { display, answer } = getDisplay({
     operNum, displayType, equations, finalResult,
   });
 
-  return { equations, finalResult, display };
+  return {
+    equations, finalResult, display, answer,
+  };
 };
 
 /**

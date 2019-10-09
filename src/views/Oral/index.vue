@@ -19,7 +19,7 @@
 
 <script>
 import OralParams from './components/OralParams.vue';
-import OralPreview from './components/OralPreview.vue';
+import OralPreview from './components/OralPreview/OralPreview.vue';
 
 export default {
   name: 'Oral',
