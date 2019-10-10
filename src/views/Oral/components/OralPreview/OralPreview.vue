@@ -6,7 +6,6 @@
           v-for="(oralPageDatas,pageIndex) in oralPageList"
           :key="pageIndex"
           class="sheet-page"
-          style="page-break-before: always"
         >
           <div class="page-title">
             口算题卡（{{ num2hanzi(pageIndex + 1) }}）

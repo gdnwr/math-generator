@@ -6,7 +6,10 @@
         :key="pageIndex"
         class="sheet-page"
       >
-        <div class="page-title">
+        <div
+          class="page-title"
+          :class="pageIndex % 5 === 0 ? 'page-break' : ''"
+        >
           口算答案（{{ num2hanzi(pageIndex + 1) }}）
         </div>
         <div class="page-content">
@@ -70,7 +73,10 @@ export default {
       padding: 20px;
       font-size: 30px;
       text-align: center;
-      // page-break-before: always;
+    }
+
+    .page-break {
+      page-break-before: always;
     }
 
     .page-subtitle {
